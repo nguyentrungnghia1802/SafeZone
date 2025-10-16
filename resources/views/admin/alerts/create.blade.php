@@ -29,6 +29,7 @@
                     <input
                         type="text"
                         id="address_display"
+                        required
                         class="flex-1 px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none"
                         placeholder="Chưa có địa chỉ" readonly />
 

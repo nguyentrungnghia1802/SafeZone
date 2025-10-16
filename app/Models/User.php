@@ -62,9 +62,9 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
-    public function address()
+    public function addresses()
     {
-        return $this->morphOne(Address::class, 'addressable');
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     
