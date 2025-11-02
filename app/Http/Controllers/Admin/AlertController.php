@@ -40,14 +40,12 @@ class AlertController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
             'address_line' => 'required|string', 
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ], [
             'title.string' => 'The title must be a string.',
             'title.max' => 'The title may not be greater than 255 characters.',
-            'description.string' => 'The description must be a string.',
             'address_line.required' => 'Please select an address on the map before creating an alert.',
         ]);
 

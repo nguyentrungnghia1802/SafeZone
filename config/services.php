@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'windy' => [
+        'key' => env('WINDY_API_KEY'),
+    ],
+
+
 ];
