@@ -75,7 +75,7 @@
                 <label for="image" class="block text-sm font-medium text-white mb-2">Ảnh</label>
                 <input type="file" name="image" id="image" accept="image/*">
                 <p class="text-gray-400 text-sm mt-2">Ảnh hiện tại:</p>
-                <img id="edit-image" src="{{ asset('storage/' . ($alert->image_path ?? 'base.png')) }}" alt="Ảnh" width="150">
+                <img id="edit-image" src="{{ asset('images/' . ($alert->image_path ?? 'base.png')) }}" alt="Ảnh" width="150">
             </div>
 
             <!-- Description -->

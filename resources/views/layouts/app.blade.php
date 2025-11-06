@@ -26,6 +26,14 @@
             window.MAPTILER_KEY = "{{ env('MAPTILER_KEY') }}";
         </script>
 
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <script>
+            window.socket = io("http://localhost:6001");
+        </script>
+
+        @stack('scripts')
+
+
         <style>
             #map {
                 width: 100%;

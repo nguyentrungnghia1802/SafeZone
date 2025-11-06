@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/addresses/{id}', [AddressController::class, 'destroy'])->name('addresses.destroy');
 
     Route::get('/alerts', [AlertUserController::class, 'index'])->name('alerts.index');
+    Route::get('/alerts/load', [AlertController::class, 'loadMore'])->name('alerts.load');
     
 });
 

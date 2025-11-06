@@ -9,6 +9,8 @@ use App\Http\Resources\AlertResource;
 use App\Http\Resources\AddressResource;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -24,7 +26,6 @@ class AlertController extends Controller
                 ->latest()
                 ->get()
         );
-
         //dd($alerts);
         return view('admin.alerts.index', [
             'alerts' => $alerts,
@@ -56,7 +57,7 @@ class AlertController extends Controller
             $image->move(public_path('storage'), $imageName);
             $image_path = $imageName;
         } else {
-            $image_path = 'base.jpg';
+            $image_path = 'base.png';
         }
 
         $alert = new Alert();
@@ -80,7 +81,8 @@ class AlertController extends Controller
         $address->latitude = $request->input('latitude');
         $address->longitude = $request->input('longitude');
         $alert->address()->save($address);
-
+        $alert->refresh();
+        Http::post('http://localhost:6001/new-alert', $alert->toArray());
 
         return redirect()->route('admin.alerts.index')->with('success', 'Alert created successfully.');
     }

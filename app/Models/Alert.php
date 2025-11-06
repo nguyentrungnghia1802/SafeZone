@@ -16,6 +16,12 @@ class Alert extends Model
         'created_by',
     ];
 
+    protected $casts = [
+        'type' => 'string',
+        'severity' => 'string',
+    ];
+
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');

@@ -69,7 +69,7 @@
             <label for="image">Ảnh</label>
             <input type="file" name="image" id="image" accept="image/*">
             <p>Ảnh hiện tại</p>
-            <img id="create-image" src="{{ asset('storage/base.png') }}" alt="Ảnh" width="150">
+            <img id="create-image" src="{{ asset('images/base.png') }}" alt="Ảnh" width="150">
 
             <!-- rest of form -->
             <div class="mb-4 mt-4">
