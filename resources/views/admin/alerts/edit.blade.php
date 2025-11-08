@@ -75,7 +75,7 @@
                 <label for="image" class="block text-sm font-medium text-white mb-2">Ảnh</label>
                 <input type="file" name="image" id="image" accept="image/*">
                 <p class="text-gray-400 text-sm mt-2">Ảnh hiện tại:</p>
-                <img id="edit-image" src="{{ asset('images/' . ($alert->image_path ?? 'base.png')) }}" alt="Ảnh" width="150">
+                <img id="edit-image" src="{{ asset('storage/' . ($alert->image_path ?? 'base.png')) }}" alt="Ảnh" width="150">
             </div>
 
             <!-- Description -->
@@ -107,6 +107,22 @@
                     <option value="4" {{ old('severity', $alert->severity) == 4 ? 'selected' : '' }}>Critical</option>
                 </select>
             </div>
+
+            <!-- Radius -->
+            <div class="mb-4 mt-4">
+    <label for="radius" class="block text-gray-300 font-semibold mb-2">
+        Bán kính cảnh báo (mét)
+    </label>
+    <input
+        type="number"
+        name="radius"
+        id="radius"
+        value="{{ old('radius', 0) }}"
+        min="0"
+        class="w-full px-4 py-2 bg-gray-800 text-white border border-gray-600 rounded focus:ring-2 focus:ring-pink-500 focus:outline-none"
+        placeholder="Nhập bán kính, ví dụ 500">
+    <p class="text-xs text-gray-400 mt-1">Đơn vị tính: mét (m). Giá trị 0 nghĩa là không giới hạn phạm vi.</p>
+</div>
 
             <div class="flex gap-2">
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">

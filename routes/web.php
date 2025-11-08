@@ -41,6 +41,7 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->gr
     Route::get('/alerts/{id}', [AlertController::class, 'show'])->name('alerts.show');
     Route::get('/alerts/{id}/edit', [AlertController::class, 'edit'])->name('alerts.edit');
     Route::put('/alerts/{id}', [AlertController::class, 'update'])->name('alerts.update');
+    Route::get('/alerts/{id}/delete', [AlertController::class, 'destroy'])->name('alerts.delete');
 
     // User management
     Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');

@@ -21,6 +21,7 @@ class AlertResource extends JsonResource
             'image_path' => $this->image_path,
             'type' => $this->type,
             'severity' => $this->severity,
+            'status' => $this->status,
             'radius' => $this->radius,
             'issued_at' => $this->issued_at,
             'created_by' => $this->created_by,

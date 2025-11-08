@@ -13,6 +13,7 @@ class Alert extends Model
         'image_path',
         'type',
         'severity',
+        'status',
         'radius',
         'issued_at',
         'created_by',

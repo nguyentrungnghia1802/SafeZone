@@ -17,20 +17,41 @@ use Illuminate\Support\Facades\Http;
 
 class AlertController extends Controller
 {
-    public function index()
-    {
-        $alerts = AlertResource::collection(
-            Alert::with('address')
-                ->whereIn('type', ['flood','fire','storm','earthquake'])
-                ->whereIn('severity', ['low','medium','high','critical'])
-                ->latest()
-                ->get()
-        );
-        //dd($alerts);
-        return view('admin.alerts.index', [
-            'alerts' => $alerts,
-        ]);
+public function index(Request $request)
+{
+    $status = $request->input('status');
+    $search = $request->input('search');
+
+    $query = Alert::with('address')
+        ->whereIn('type', ['flood', 'fire', 'storm', 'earthquake'])
+        ->whereIn('severity', ['low', 'medium', 'high', 'critical']);
+
+    if (!empty($status) && $status !== 'all') {
+        $query->where('status', $status);
     }
+
+    if (!empty($search)) {
+        $query->where(function ($q) use ($search) {
+            $q->where('title', 'like', "%{$search}%")
+              ->orWhere('type', 'like', "%{$search}%")
+              ->orWhere('severity', 'like', "%{$search}%");
+        });
+    }
+
+    // Phân trang thay vì get()
+    $alerts = $query->latest()->paginate(10)->withQueryString();
+
+    // Bọc bằng AlertResource (giống cũ)
+    $alerts = AlertResource::collection($alerts);
+
+    // Trả về view
+    return view('admin.alerts.index', [
+        'alerts' => $alerts,
+        'status' => $status,
+        'search' => $search,
+    ]);
+}
+
 
     public function create()
     {
@@ -83,7 +104,8 @@ class AlertController extends Controller
         $address->longitude = $request->input('longitude');
         $alert->address()->save($address);
         $alert->refresh();
-        Http::post('http://localhost:6001/new-alert', $alert->toArray());
+        Http::post('http://localhost:6001/new-alert', $alert->load('address')->toArray());
+
 
         return redirect()->route('admin.alerts.index')->with('success', 'Alert created successfully.');
     }
@@ -98,7 +120,6 @@ class AlertController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
             'address_line' => 'required|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
@@ -121,6 +142,7 @@ class AlertController extends Controller
             'description' => $request->input('description'),
             'type' => $request->input('type'),
             'severity' => $request->input('severity'),
+            'radius' => $request->input('radius', 0),
         ]);
 
         $alert->address->update([
