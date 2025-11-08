@@ -11,10 +11,18 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- MapLibre CSS & JS -->
-        <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
-        <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+        <!-- MapLibre -->
+        <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+
+        <!-- Turf.js -->
         <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+        <link 
+          rel="stylesheet" 
+          href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        />
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 
         <script>
             window.MAPTILER_KEY = "{{ env('MAPTILER_KEY') }}";

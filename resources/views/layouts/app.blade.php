@@ -14,9 +14,25 @@
         <!-- MapLibre CSS & JS -->
         <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
         <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+        <link 
+          rel="stylesheet" 
+          href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        />
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+
+
         <script>
             window.MAPTILER_KEY = "{{ env('MAPTILER_KEY') }}";
         </script>
+
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <script>
+            window.socket = io("http://localhost:6001");
+        </script>
+
+        @stack('scripts')
+
 
         <style>
             #map {

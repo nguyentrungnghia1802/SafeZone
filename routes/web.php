@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/addresses/{id}', [AddressController::class, 'destroy'])->name('addresses.destroy');
 
     Route::get('/alerts', [AlertUserController::class, 'index'])->name('alerts.index');
+    Route::get('/alerts/load', [AlertController::class, 'loadMore'])->name('alerts.load');
+    
 });
 
 Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {
@@ -36,6 +38,19 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->gr
     Route::get('/alerts', [AlertController::class, 'index'])->name('alerts.index');
     Route::get('/alerts/create', [AlertController::class, 'create'])->name('alerts.create');
     Route::post('/alerts', [AlertController::class, 'store'])->name('alerts.store');
+    Route::get('/alerts/{id}', [AlertController::class, 'show'])->name('alerts.show');
+    Route::get('/alerts/{id}/edit', [AlertController::class, 'edit'])->name('alerts.edit');
+    Route::put('/alerts/{id}', [AlertController::class, 'update'])->name('alerts.update');
+    Route::get('/alerts/{id}/delete', [AlertController::class, 'destroy'])->name('alerts.delete');
+
+    // User management
+    Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+
+    // Statistics
+    Route::get('/statistics', [\App\Http\Controllers\Admin\AdminDashboard::class, 'statistics'])->name('statistics');
 });
 
 require __DIR__.'/auth.php';

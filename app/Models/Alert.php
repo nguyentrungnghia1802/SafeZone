@@ -10,11 +10,20 @@ class Alert extends Model
     protected $fillable = [
         'title',
         'description',
+        'image_path',
         'type',
         'severity',
+        'status',
+        'radius',
         'issued_at',
         'created_by',
     ];
+
+    protected $casts = [
+        'type' => 'string',
+        'severity' => 'string',
+    ];
+
 
     public function creator()
     {

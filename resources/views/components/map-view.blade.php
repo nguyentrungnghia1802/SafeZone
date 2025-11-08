@@ -1,26 +1,26 @@
+
 @props([
     'locations' => [],
     'zoom' => 10,
     'markerType' => 'default',
 ])
 
-
 <div class="relative w-full h-full">
     <div id="map" class="w-full h-full rounded-lg overflow-hidden shadow"></div>
 </div>
 
-    
 <script>
-
-
-    let mapLocationsData = @json($locations);
+    // ==============================
+    // DỮ LIỆU MARKER
+    // ==============================
+    const mapLocationsData = @json($locations);
     const markerType = @json($markerType);
     const center = mapLocationsData.length > 0 
         ? [mapLocationsData[0].longitude, mapLocationsData[0].latitude]
         : [105.8342, 21.0278]; 
 
     // ==============================
-    // Khởi tạo bản đồ
+    // KHỞI TẠO BẢN ĐỒ
     // ==============================
     const map = new maplibregl.Map({
         container: 'map',
@@ -32,29 +32,11 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     // ==============================
-    // Hiển thị các markers
+    // HIỂN THỊ MARKERS
     // ==============================
     mapLocationsData.forEach(location => {
-
         let markerColor = '#e63946';
         let markerPopup = `<strong>${location.formatted_address}</strong>`;
-
-        switch (markerType) {
-            // case 'warehouse':
-            //     markerColor = '#1d4ed8'; // xanh dương
-            //     markerPopup = `<strong>Warehouse:</strong> ${location.formatted_address}`;
-            //     break;
-            // case 'user':
-            //     markerColor = '#22c55e'; // xanh lá
-            //     markerPopup = `<strong>User Address:</strong> ${location.formatted_address}`;
-            //     break;
-            // case 'address':
-            //     markerColor = '#f59e0b'; // vàng
-            //     markerPopup = `<strong>Delivery Point:</strong> ${location.formatted_address}`;
-            //     break;
-            default:
-                markerColor = '#e63946';
-        }
 
         const marker = new maplibregl.Marker({ color: markerColor })
             .setLngLat([location.longitude, location.latitude])
@@ -62,9 +44,8 @@
             .addTo(map);
     });
 
-
     // ==============================
-    // Tự động fit bản đồ để hiển thị tất cả các điểm
+    // FIT BẢN ĐỒ CHO TẤT CẢ ĐIỂM
     // ==============================
     if (mapLocationsData.length > 1) {
         const bounds = new maplibregl.LngLatBounds();
@@ -76,4 +57,7 @@
     map.scrollZoom.enable();
     map.boxZoom.enable();
     map.keyboard.enable();
+
+
 </script>
+
