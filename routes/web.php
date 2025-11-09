@@ -34,6 +34,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/emergency-routes', [\App\Http\Controllers\User\EmergencyRouteController::class, 'index'])->name('emergency-routes.index');
     Route::post('/emergency-routes/find-nearest', [\App\Http\Controllers\User\EmergencyRouteController::class, 'findNearest'])->name('emergency-routes.find-nearest');
     
+    // Disaster Monitoring
+    Route::get('/disaster-monitor', function () {
+        return view('user.disaster-monitor-location');
+    })->name('disaster-monitor');
+    
+    // Disaster Data APIs
+    Route::get('/api/disasters/earthquakes', [\App\Http\Controllers\User\DisasterDataController::class, 'getEarthquakes'])->name('api.disasters.earthquakes');
+    Route::get('/api/disasters/nasa-events', [\App\Http\Controllers\User\DisasterDataController::class, 'getNASAEvents'])->name('api.disasters.nasa-events');
+    Route::get('/api/disasters/dashboard', [\App\Http\Controllers\User\DisasterDataController::class, 'getDashboardData'])->name('api.disasters.dashboard');
+    Route::post('/api/disasters/analyze-location', [\App\Http\Controllers\User\DisasterDataController::class, 'analyzeLocationDisasters'])->name('api.disasters.analyze-location');
+    
 });
 
 Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->group(function () {

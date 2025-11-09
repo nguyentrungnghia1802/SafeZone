@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('emergency-routes.index')" :active="request()->routeIs('emergency-routes*')">
                         {{ __('Emergency Routes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('disaster-monitor')" :active="request()->routeIs('disaster-monitor')">
+                        {{ __('Disaster Monitor') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -121,6 +124,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('emergency-routes.index')" :active="request()->routeIs('emergency-routes*')">
                 {{ __('Emergency Routes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('disaster-monitor')" :active="request()->routeIs('disaster-monitor')">
+                {{ __('Disaster Monitor') }}
             </x-responsive-nav-link>
         </div>
 
