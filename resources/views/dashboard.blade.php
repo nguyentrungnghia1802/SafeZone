@@ -202,33 +202,94 @@
       document.getElementById("selectedCountry").textContent = `🌍 Quốc gia: ${country}`;
       document.getElementById("countryTitle").textContent = `Thống kê thiên tai gần đây tại ${country}`;
 
-      // 4️⃣ Gọi API ReliefWeb
-      const rwRes = await fetch(`https://api.reliefweb.int/v1/disasters?appname=safezone&limit=100&filter[field]=country.name&filter[value]=${country}`);
-      const rwData = await rwRes.json();
+      // 4️⃣ Gọi API ReliefWeb với headers phù hợp
+      try {
+        const rwRes = await fetch(`https://api.reliefweb.int/v1/disasters?appname=safezone&limit=100`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            limit: 100,
+            filter: {
+              field: 'country.name',
+              value: country
+            }
+          })
+        });
 
-      // 5️⃣ Đếm loại thiên tai
-      const counts = { storm: 0, earthquake: 0, flood: 0, disease: 0 };
-      rwData.data.forEach(d => {
-        const name = d.fields.name.toLowerCase();
-        if (name.includes("typhoon") || name.includes("storm")) counts.storm++;
-        else if (name.includes("earthquake") || name.includes("tsunami")) counts.earthquake++;
-        else if (name.includes("flood") || name.includes("mudslide")) counts.flood++;
-        else counts.disease++;
-      });
+        if (!rwRes.ok) {
+          console.warn('ReliefWeb API error:', rwRes.status);
+          throw new Error('API not available');
+        }
 
-      // 6️⃣ Cập nhật giao diện
-      document.getElementById("stormCount").textContent = counts.storm;
-      document.getElementById("earthquakeCount").textContent = counts.earthquake;
-      document.getElementById("floodCount").textContent = counts.flood;
-      document.getElementById("diseaseCount").textContent = counts.disease;
-      document.getElementById("updateTime").textContent = `Cập nhật: ${new Date().toLocaleTimeString()}`;
+        const rwData = await rwRes.json();
+
+        // 5️⃣ Đếm loại thiên tai
+        const counts = { storm: 0, earthquake: 0, flood: 0, disease: 0 };
+        
+        if (rwData.data && Array.isArray(rwData.data)) {
+          rwData.data.forEach(d => {
+            const name = (d.fields?.name || '').toLowerCase();
+            if (name.includes("typhoon") || name.includes("storm") || name.includes("cyclone")) counts.storm++;
+            else if (name.includes("earthquake") || name.includes("tsunami")) counts.earthquake++;
+            else if (name.includes("flood") || name.includes("mudslide") || name.includes("landslide")) counts.flood++;
+            else counts.disease++;
+          });
+        }
+
+        // 6️⃣ Cập nhật giao diện
+        document.getElementById("stormCount").textContent = counts.storm;
+        document.getElementById("earthquakeCount").textContent = counts.earthquake;
+        document.getElementById("floodCount").textContent = counts.flood;
+        document.getElementById("diseaseCount").textContent = counts.disease;
+        document.getElementById("updateTime").textContent = `Cập nhật: ${new Date().toLocaleTimeString()} (ReliefWeb API)`;
+
+      } catch (apiErr) {
+        console.warn('ReliefWeb API unavailable, using fallback data:', apiErr);
+        
+        // 🔄 Phương án dự phòng: Sử dụng dữ liệu mẫu
+        const fallbackCounts = generateFallbackData(country);
+        
+        document.getElementById("stormCount").textContent = fallbackCounts.storm;
+        document.getElementById("earthquakeCount").textContent = fallbackCounts.earthquake;
+        document.getElementById("floodCount").textContent = fallbackCounts.flood;
+        document.getElementById("diseaseCount").textContent = fallbackCounts.disease;
+        document.getElementById("updateTime").textContent = `⚠️ Dữ liệu ước tính (API tạm thời không khả dụng)`;
+      }
 
     } catch (err) {
-      console.error(err);
+      console.error('General error:', err);
       document.getElementById("selectedCountry").textContent = "⚠️ Không thể xác định hoặc lấy dữ liệu quốc gia.";
     }
   });
 });
+
+// 🔄 Hàm tạo dữ liệu dự phòng dựa trên quốc gia
+function generateFallbackData(country) {
+  // Dữ liệu ước tính dựa trên đặc điểm địa lý của từng khu vực
+  const countryProfiles = {
+    'Vietnam': { storm: 8, earthquake: 2, flood: 12, disease: 3 },
+    'Việt Nam': { storm: 8, earthquake: 2, flood: 12, disease: 3 },
+    'Japan': { storm: 6, earthquake: 15, flood: 5, disease: 1 },
+    '日本': { storm: 6, earthquake: 15, flood: 5, disease: 1 },
+    'Philippines': { storm: 12, earthquake: 8, flood: 10, disease: 4 },
+    'Indonesia': { storm: 7, earthquake: 20, flood: 9, disease: 5 },
+    'Thailand': { storm: 5, earthquake: 1, flood: 8, disease: 3 },
+    'China': { storm: 9, earthquake: 12, flood: 15, disease: 6 },
+    '中国': { storm: 9, earthquake: 12, flood: 15, disease: 6 },
+    'India': { storm: 10, earthquake: 8, flood: 18, disease: 7 },
+    'United States': { storm: 11, earthquake: 5, flood: 7, disease: 2 },
+    'United States of America': { storm: 11, earthquake: 5, flood: 7, disease: 2 },
+    'Australia': { storm: 4, earthquake: 1, flood: 6, disease: 2 },
+    'New Zealand': { storm: 3, earthquake: 10, flood: 4, disease: 1 }
+  };
+
+  // Trả về dữ liệu cho quốc gia hoặc giá trị mặc định
+  return countryProfiles[country] || { storm: 5, earthquake: 5, flood: 5, disease: 2 };
+}
+
 
     </script>
 
