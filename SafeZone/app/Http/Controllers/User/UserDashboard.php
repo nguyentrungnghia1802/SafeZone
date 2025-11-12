@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alert;
+use App\Http\Resources\AlertResource;
 use Illuminate\Http\Request;
 
 class UserDashboard extends Controller
@@ -12,8 +14,47 @@ class UserDashboard extends Controller
      */
     public function index()
     {
-        //
-        return view('dashboard');
+        // Lấy alerts theo severity
+        $criticalAlerts = AlertResource::collection(
+            Alert::with(['address', 'creator'])
+                ->where('severity', 'critical')
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->get()
+        );
+
+        $highAlerts = AlertResource::collection(
+            Alert::with(['address', 'creator'])
+                ->where('severity', 'high')
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->get()
+        );
+
+        $recentAlerts = AlertResource::collection(
+            Alert::with(['address', 'creator'])
+                ->orderBy('created_at', 'desc')
+                ->take(10)
+                ->get()
+        );
+
+        // Thống kê
+        $stats = [
+            'total_alerts' => Alert::count(),
+            'critical_alerts' => Alert::where('severity', 'critical')->count(),
+            'high_alerts' => Alert::where('severity', 'high')->count(),
+            'medium_alerts' => Alert::where('severity', 'medium')->count(),
+            'low_alerts' => Alert::where('severity', 'low')->count(),
+            'active_disasters' => Alert::whereIn('type', ['storm', 'flood', 'earthquake'])->count(),
+        ];
+
+        // Thống kê theo loại thiên tai
+        $alertsByType = Alert::selectRaw('type, COUNT(*) as count')
+            ->groupBy('type')
+            ->pluck('count', 'type')
+            ->toArray();
+
+        return view('dashboard', compact('criticalAlerts', 'highAlerts', 'recentAlerts', 'stats', 'alertsByType'));
     }
 
     /**
