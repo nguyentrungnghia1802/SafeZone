@@ -45,7 +45,7 @@ class UserDashboard extends Controller
             'high_alerts' => Alert::where('severity', 'high')->count(),
             'medium_alerts' => Alert::where('severity', 'medium')->count(),
             'low_alerts' => Alert::where('severity', 'low')->count(),
-            'active_disasters' => Alert::whereIn('type', ['storm', 'flood', 'earthquake'])->count(),
+            'active_disasters' => Alert::whereIn('type', ['storm', 'flood', 'earthquake', 'fire', 'other'])->count(),
         ];
 
         // Thống kê theo loại thiên tai
@@ -53,6 +53,14 @@ class UserDashboard extends Controller
             ->groupBy('type')
             ->pluck('count', 'type')
             ->toArray();
+
+        // Đảm bảo tất cả các loại thiên tai đều có trong mảng (kể cả khi count = 0)
+        $allTypes = ['flood', 'storm', 'earthquake', 'fire', 'other'];
+        foreach ($allTypes as $type) {
+            if (!isset($alertsByType[$type])) {
+                $alertsByType[$type] = 0;
+            }
+        }
 
         return view('dashboard', compact('criticalAlerts', 'highAlerts', 'recentAlerts', 'stats', 'alertsByType'));
     }

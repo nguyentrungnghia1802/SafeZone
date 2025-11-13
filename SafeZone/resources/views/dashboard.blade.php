@@ -8,17 +8,17 @@
                     frameborder="0"
                 ></iframe>
             </div>
-            <!-- Thẻ trạng thái an toàn dưới map -->
+            <!-- Safety Status Card below map -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
                 <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-8 shadow-xl">
                     <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                         <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        Trạng thái an toàn
+                        Safety Status
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-                        <!-- An toàn -->
+                        <!-- Safe -->
                         <div class="group relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-emerald-500/20 to-green-500/20 border border-emerald-500/30">
                             <div class="flex items-center gap-4">
                                 <div class="p-4 bg-emerald-500/30 rounded-xl">
@@ -27,18 +27,18 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-xl font-semibold text-white">An toàn</p>
-                                    <p class="text-emerald-200/70 text-sm">Không có rủi ro đáng kể</p>
+                                    <p class="text-xl font-semibold text-white">Safe</p>
+                                    <p class="text-emerald-200/70 text-sm">No significant risks</p>
                                 </div>
                             </div>
                         </div>
 
                         {{--
-                        Đặt điều kiện render 2 thẻ dưới đây khi cần, ví dụ:
-                        @if($stats['high_alerts'] > 0) ... Không an toàn ... @endif
-                        @if($stats['critical_alerts'] > 0) ... Nguy hiểm ... @endif
+                        Add conditional rendering for the 2 cards below when needed, for example:
+                        @if($stats['high_alerts'] > 0) ... Unsafe ... @endif
+                        @if($stats['critical_alerts'] > 0) ... Dangerous ... @endif
 
-                        <!-- Không an toàn (ẩn mặc định, sẽ kiểm tra điều kiện sau) -->
+                        <!-- Unsafe (hidden by default, will check conditions later) -->
                         <div class="group relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-amber-500/20 to-yellow-500/20 border border-amber-500/30">
                             <div class="flex items-center gap-4">
                                 <div class="p-4 bg-amber-500/30 rounded-xl">
@@ -47,13 +47,13 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-xl font-semibold text-white">Không an toàn</p>
-                                    <p class="text-amber-200/70 text-sm">Cần thận trọng</p>
+                                    <p class="text-xl font-semibold text-white">Unsafe</p>
+                                    <p class="text-amber-200/70 text-sm">Use caution</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Nguy hiểm (ẩn mặc định, sẽ kiểm tra điều kiện sau) -->
+                        <!-- Dangerous (hidden by default, will check conditions later) -->
                         <div class="group relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-rose-500/30">
                             <div class="flex items-center gap-4">
                                 <div class="p-4 bg-rose-500/30 rounded-xl">
@@ -62,42 +62,42 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-xl font-semibold text-white">Nguy hiểm</p>
-                                    <p class="text-rose-200/70 text-sm">Hạn chế di chuyển</p>
+                                    <p class="text-xl font-semibold text-white">Dangerous</p>
+                                    <p class="text-rose-200/70 text-sm">Limit movement</p>
                                 </div>
                             </div>
                         </div>
                         --}}
                     </div>
-                    <p class="text-xs text-slate-500 mt-4 italic">Thẻ tĩnh — bạn có thể thêm điều kiện hiển thị sau.</p>
+                    <p class="text-xs text-slate-500 mt-4 italic">Static card — you can add conditional display later.</p>
                 </div>
             </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
 
 
-            <!-- Cảnh báo Nguy hiểm và Cao -->
+            <!-- Critical and High Alerts -->
             <div class="space-y-6 mb-8">
-                <!-- Cảnh báo Nguy hiểm (Critical) -->
-                <div class="bg-gradient-to-br from-red-900/40 to-red-800/20 backdrop-blur-xl border border-red-500/30 rounded-2xl p-6 shadow-xl">
+                <!-- Critical Alerts -->
+                <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-6 shadow-xl">
                         <div class="flex items-center justify-between mb-6">
                             <h2 class="text-2xl font-bold text-white flex items-center gap-3">
                                 <svg class="w-8 h-8 text-red-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                                 </svg>
-                                Cảnh báo Nguy hiểm
-                                <span class="px-3 py-1 bg-red-500/30 text-red-200 text-sm rounded-full">{{ $criticalAlerts->count() }}</span>
+                                Critical Alerts
+                                <span class="px-3 py-1 bg-red-500/20 text-red-300 text-sm rounded-full">{{ $criticalAlerts->count() }}</span>
                             </h2>
-                            <a href="/alerts?severity=critical" class="text-red-300 hover:text-red-200 text-sm font-medium transition-colors">
-                                Xem tất cả →
+                            <a href="/alerts?severity=critical" class="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
+                                View all →
                             </a>
                         </div>
 
                         @if($criticalAlerts->count() > 0)
                             <div class="space-y-3">
                                 @foreach($criticalAlerts as $alert)
-                                    <div class="group bg-red-950/50 hover:bg-red-950/70 border border-red-500/20 rounded-xl p-4 transition-all duration-300 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+                                    <div class="group bg-slate-800/40 hover:bg-slate-700/50 border border-slate-600/30 hover:border-red-500/40 rounded-xl p-4 transition-all duration-300">
                                         <div class="flex items-start gap-4">
-                                            <div class="flex-shrink-0 p-3 bg-red-500/30 rounded-lg">
+                                            <div class="flex-shrink-0 p-3 bg-red-500/20 rounded-lg">
                                                 @if($alert->type === 'storm')
                                                     <svg class="w-6 h-6 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
@@ -117,11 +117,11 @@
                                                 @endif
                                             </div>
                                             <div class="flex-1 min-w-0">
-                                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">
+                                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors">
                                                     {{ $alert->title }}
                                                 </h3>
-                                                <p class="text-red-200/70 text-sm mb-2 line-clamp-2">{{ $alert->description }}</p>
-                                                <div class="flex flex-wrap items-center gap-3 text-xs text-red-300/60">
+                                                <p class="text-slate-300 text-sm mb-2 line-clamp-2">{{ $alert->description }}</p>
+                                                <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
                                                     @if($alert->address)
                                                         <span class="flex items-center gap-1">
                                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,37 +153,37 @@
                             </div>
                         @else
                             <div class="text-center py-12">
-                                <div class="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
-                                    <svg class="w-8 h-8 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-700/40 rounded-full mb-4">
+                                    <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </div>
-                                <p class="text-red-300/70">Không có cảnh báo nguy hiểm</p>
+                                <p class="text-slate-400">No critical alerts</p>
                             </div>
                         @endif
                     </div>
 
-                <!-- Cảnh báo Cao (High) -->
-                <div class="bg-gradient-to-br from-orange-900/40 to-orange-800/20 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-6 shadow-xl">
+                <!-- High Alerts -->
+                <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-6 shadow-xl">
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-white flex items-center gap-3">
                             <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                             </svg>
-                            Cảnh báo Mức Cao
-                            <span class="px-3 py-1 bg-orange-500/30 text-orange-200 text-sm rounded-full">{{ $highAlerts->count() }}</span>
+                            High Alerts
+                            <span class="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full">{{ $highAlerts->count() }}</span>
                         </h2>
-                        <a href="/alerts?severity=high" class="text-orange-300 hover:text-orange-200 text-sm font-medium transition-colors">
-                            Xem tất cả →
+                        <a href="/alerts?severity=high" class="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
+                            View all →
                         </a>
                     </div>
 
                     @if($highAlerts->count() > 0)
                         <div class="space-y-3">
                             @foreach($highAlerts as $alert)
-                                <div class="group bg-orange-950/50 hover:bg-orange-950/70 border border-orange-500/20 rounded-xl p-4 transition-all duration-300">
+                                <div class="group bg-slate-800/40 hover:bg-slate-700/50 border border-slate-600/30 hover:border-orange-500/40 rounded-xl p-4 transition-all duration-300">
                                     <div class="flex items-start gap-4">
-                                        <div class="flex-shrink-0 p-3 bg-orange-500/30 rounded-lg">
+                                        <div class="flex-shrink-0 p-3 bg-orange-500/20 rounded-lg">
                                             @if($alert->type === 'storm')
                                                 <svg class="w-6 h-6 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
@@ -203,9 +203,9 @@
                                             @endif
                                         </div>
                                         <div class="flex-1 min-w-0">
-                                            <h3 class="text-lg font-semibold text-white mb-1">{{ $alert->title }}</h3>
-                                            <p class="text-orange-200/70 text-sm mb-2 line-clamp-2">{{ $alert->description }}</p>
-                                            <div class="flex flex-wrap items-center gap-3 text-xs text-orange-300/60">
+                                            <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors">{{ $alert->title }}</h3>
+                                            <p class="text-slate-300 text-sm mb-2 line-clamp-2">{{ $alert->description }}</p>
+                                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
                                                 @if($alert->address)
                                                     <span>📍 {{ $alert->address->city ?? 'N/A' }}</span>
                                                 @endif
@@ -220,151 +220,144 @@
                 </div>
             </div>
 
-            <!-- Sidebar với thống kê và hành động nhanh -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div class="space-y-6">
-                    <!-- Thống kê theo loại thiên tai -->
-                    <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Statistics and Quick Actions (Full width) -->
+            <div class="space-y-6 mb-8">
+                <!-- Statistics by Disaster Type -->
+                <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-8 shadow-xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                             </svg>
-                            Thống kê theo loại
+                            Statistics by Disaster Type
                         </h3>
-                        <div class="space-y-3">
-                            @foreach($alertsByType as $type => $count)
-                                <div class="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors">
-                                    <div class="flex items-center gap-3">
-                                        <span>
+                        <span class="text-sm text-slate-400">Total: {{ array_sum($alertsByType) }} alerts</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        @foreach($alertsByType as $type => $count)
+                            @if(in_array($type, ['flood', 'storm', 'earthquake', 'fire', 'other']))
+                                <div class="group relative overflow-hidden rounded-xl p-4 bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300">
+                                    <div class="flex flex-col items-center gap-3 text-center">
+                                        <div class="p-3 rounded-xl bg-slate-700/40 group-hover:bg-cyan-500/10 transition-colors">
                                             @if($type === 'storm')
-                                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
                                                 </svg>
                                             @elseif($type === 'flood')
-                                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                                                 </svg>
                                             @elseif($type === 'earthquake')
-                                                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                                 </svg>
                                             @elseif($type === 'fire')
-                                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
                                                 </svg>
-                                            @elseif($type === 'landslide')
-                                                <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                                                </svg>
                                             @else
-                                                <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                                                 </svg>
                                             @endif
-                                        </span>
-                                        <span class="text-slate-200 font-medium capitalize">{{ ucfirst($type) }}</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-3xl font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">{{ $count }}</p>
+                                            <p class="text-xs text-slate-400 capitalize group-hover:text-slate-300 transition-colors">{{ ucfirst($type) }}</p>
+                                        </div>
                                     </div>
-                                    <span class="px-3 py-1 bg-blue-500/30 text-blue-200 rounded-full text-sm font-semibold">{{ $count }}</span>
                                 </div>
-                            @endforeach
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
+                </div>
 
-                    <!-- Hành động nhanh -->
-                    <div class="bg-gradient-to-br from-cyan-900/40 to-cyan-800/20 backdrop-blur-xl border border-cyan-600/30 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                <!-- Quick Actions -->
+                <div class="bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Quick Actions
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <a href="{{ route('dashboard') }}" class="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105">
+                            <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
-                            Hành động nhanh
-                        </h3>
-                        <div class="space-y-3">
-                            <button class="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium shadow-lg hover:shadow-cyan-500/50 transition-all duration-300">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                                </svg>
-                                Tạo cảnh báo mới
-                            </button>
-                            <button class="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium shadow-lg hover:shadow-red-500/50 transition-all duration-300 animate-pulse">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                                </svg>
-                                Gửi SOS khẩn cấp
-                            </button>
-                            <a href="/alerts" class="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-slate-700/50 hover:bg-slate-700/70 text-white font-medium border border-slate-600/30 transition-all duration-300">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                </svg>
-                                Xem tất cả cảnh báo
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Trung tâm cứu hộ -->
-                    <div class="bg-gradient-to-br from-emerald-900/40 to-emerald-800/20 backdrop-blur-xl border border-emerald-600/30 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            <span class="text-white font-medium text-center group-hover:text-cyan-300 transition-colors">View Map</span>
+                        </a>
+                        
+                        <a href="{{ route('addresses.index') }}" class="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105">
+                            <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            Trung tâm cứu hộ
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between p-3 bg-emerald-950/50 rounded-lg">
-                                <span class="text-emerald-200 text-sm">Đội phản ứng nhanh</span>
-                                <span class="px-2 py-1 bg-emerald-500/30 text-emerald-200 text-xs rounded-full">Hoạt động</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-emerald-950/50 rounded-lg">
-                                <span class="text-emerald-200 text-sm">Cứu hộ miền Trung</span>
-                                <span class="px-2 py-1 bg-yellow-500/30 text-yellow-200 text-xs rounded-full">Di chuyển</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-emerald-950/50 rounded-lg">
-                                <span class="text-emerald-200 text-sm">Hỗ trợ giao thông</span>
-                                <span class="px-2 py-1 bg-red-500/30 text-red-200 text-xs rounded-full">Tạm ngưng</span>
-                            </div>
-                        </div>
+                            <span class="text-white font-medium text-center group-hover:text-cyan-300 transition-colors">Add Address</span>
+                        </a>
+                        
+                        <a href="{{ route('alerts.index') }}" class="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105">
+                            <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                            <span class="text-white font-medium text-center group-hover:text-cyan-300 transition-colors">View Alerts</span>
+                        </a>
+                        
+                        <a href="{{ route('emergency-routes.index') }}" class="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105">
+                            <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            </svg>
+                            <span class="text-white font-medium text-center group-hover:text-cyan-300 transition-colors">Find Safe Location</span>
+                        </a>
+                        
+                        <a href="{{ route('disaster-monitor') }}" class="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl bg-slate-800/50 hover:bg-slate-700/60 border border-slate-600/30 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105">
+                            <svg class="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            <span class="text-white font-medium text-center group-hover:text-cyan-300 transition-colors">Disaster Forecast</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Bản đồ thống kê thiên tai theo quốc gia -->
+            <!-- Disaster Statistics Map by Country -->
             <div class="mt-8 bg-gradient-to-br from-slate-800/40 to-slate-900/20 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-8 shadow-xl">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    Thống kê thiên tai theo quốc gia
+                    Disaster Statistics by Country
                 </h2>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Bản đồ -->
+                    <!-- Map -->
                     <div>
                         <div id="map" class="rounded-xl overflow-hidden border border-slate-600/30 shadow-lg" style="height: 400px;"></div>
-                        <p id="selectedCountry" class="text-sm text-slate-400 mt-3 italic">Nhấn vào bản đồ để chọn quốc gia...</p>
+                        <p id="selectedCountry" class="text-sm text-slate-400 mt-3 italic">Click on the map to select a country...</p>
                     </div>
 
-                    <!-- Thống kê -->
+                    <!-- Statistics -->
                     <div>
-                        <h3 id="countryTitle" class="text-xl font-semibold text-white mb-4">Chọn quốc gia để xem thống kê</h3>
+                        <h3 id="countryTitle" class="text-xl font-semibold text-white mb-4">Select a country to view statistics</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl p-6 border border-blue-500/30">
                                 <p id="stormCount" class="text-4xl font-bold text-blue-300 mb-2">--</p>
-                                <p class="text-sm text-blue-200/70">Bão / Áp thấp</p>
+                                <p class="text-sm text-blue-200/70">Storm / Cyclone</p>
                             </div>
                             <div class="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-6 border border-amber-500/30">
                                 <p id="earthquakeCount" class="text-4xl font-bold text-amber-300 mb-2">--</p>
-                                <p class="text-sm text-amber-200/70">Động đất / Sóng thần</p>
+                                <p class="text-sm text-amber-200/70">Earthquake / Tsunami</p>
                             </div>
                             <div class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 rounded-xl p-6 border border-emerald-500/30">
                                 <p id="floodCount" class="text-4xl font-bold text-emerald-300 mb-2">--</p>
-                                <p class="text-sm text-emerald-200/70">Lũ / Ngập lụt</p>
+                                <p class="text-sm text-emerald-200/70">Flood / Inundation</p>
                             </div>
                             <div class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 rounded-xl p-6 border border-rose-500/30">
                                 <p id="diseaseCount" class="text-4xl font-bold text-rose-300 mb-2">--</p>
-                                <p class="text-sm text-rose-200/70">Dịch bệnh / Khác</p>
+                                <p class="text-sm text-rose-200/70">Disease / Other</p>
                             </div>
                         </div>
-                        <p id="updateTime" class="text-xs text-slate-500 mt-4 text-right italic">Chưa có dữ liệu.</p>
+                        <p id="updateTime" class="text-xs text-slate-500 mt-4 text-right italic">No data available.</p>
                     </div>
                 </div>
             </div>
@@ -377,7 +370,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Tạo bản đồ
+            // Create map
             const map = L.map("map").setView([20, 105], 3);
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution: "&copy; OpenStreetMap contributors"
@@ -385,22 +378,22 @@
 
             let marker = null;
 
-            // Khi người dùng click lên bản đồ
+            // When user clicks on the map
             map.on("click", async (e) => {
                 const { lat, lng } = e.latlng;
 
                 if (marker) map.removeLayer(marker);
                 marker = L.marker([lat, lng]).addTo(map);
 
-                document.getElementById("selectedCountry").textContent = "🔍 Đang xác định quốc gia...";
+                document.getElementById("selectedCountry").textContent = "🔍 Identifying country...";
 
                 try {
                     const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`);
                     const geoData = await geoRes.json();
                     const country = geoData.address.country;
 
-                    document.getElementById("selectedCountry").textContent = `🌍 Quốc gia: ${country}`;
-                    document.getElementById("countryTitle").textContent = `Thống kê thiên tai gần đây tại ${country}`;
+                    document.getElementById("selectedCountry").textContent = `🌍 Country: ${country}`;
+                    document.getElementById("countryTitle").textContent = `Recent disaster statistics for ${country}`;
 
                     try {
                         const rwRes = await fetch(`https://api.reliefweb.int/v1/disasters?appname=safezone&limit=100`, {
@@ -437,7 +430,7 @@
                         document.getElementById("earthquakeCount").textContent = counts.earthquake;
                         document.getElementById("floodCount").textContent = counts.flood;
                         document.getElementById("diseaseCount").textContent = counts.disease;
-                        document.getElementById("updateTime").textContent = `Cập nhật: ${new Date().toLocaleTimeString()}`;
+                        document.getElementById("updateTime").textContent = `Updated: ${new Date().toLocaleTimeString()}`;
 
                     } catch (apiErr) {
                         const fallbackCounts = generateFallbackData(country);
@@ -445,10 +438,10 @@
                         document.getElementById("earthquakeCount").textContent = fallbackCounts.earthquake;
                         document.getElementById("floodCount").textContent = fallbackCounts.flood;
                         document.getElementById("diseaseCount").textContent = fallbackCounts.disease;
-                        document.getElementById("updateTime").textContent = `⚠️ Dữ liệu ước tính`;
+                        document.getElementById("updateTime").textContent = `⚠️ Estimated data`;
                     }
                 } catch (err) {
-                    document.getElementById("selectedCountry").textContent = "⚠️ Không thể xác định quốc gia";
+                    document.getElementById("selectedCountry").textContent = "⚠️ Unable to identify country";
                 }
             });
 

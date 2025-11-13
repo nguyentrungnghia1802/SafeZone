@@ -1,61 +1,93 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
-                        AI Disaster Monitoring & Analysis
-                    </h2>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            AI Disaster Monitoring & Analysis
+        </h2>
+    </x-slot>
 
+    <div class="py-10">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-slate-800/40 border border-slate-600/30 overflow-hidden shadow-lg sm:rounded-xl">
+                <div class="p-6">
                     <!-- Location Selection Section -->
-                    <div class="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                            📍 Select Location for Analysis
+                    <div class="mb-8 bg-slate-900/50 border border-slate-700 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-slate-100 mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Select Location for Analysis
                         </h3>
                         
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <!-- Map Container -->
                             <div>
-                                <div id="map" class="h-96 rounded-lg border-2 border-blue-300 shadow-lg"></div>
-                                <p class="text-sm text-gray-600 mt-2">
-                                    🖱️ Click on map to select location or use current position
+                                <div id="map" class="h-96 rounded-lg border border-slate-700 shadow-lg"></div>
+                                <p class="text-sm text-slate-400 mt-3 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                    </svg>
+                                    Click on map to select location or use current position
                                 </p>
                             </div>
 
                             <!-- Location Info & Controls -->
                             <div class="space-y-4">
-                                <div class="bg-white p-4 rounded-lg shadow">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <div class="bg-slate-950/50 border border-slate-700 p-4 rounded-lg">
+                                    <label class="block text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        </svg>
                                         Selected Location
                                     </label>
-                                    <div id="selected-location" class="text-gray-900 font-semibold">
+                                    <div id="selected-location" class="text-slate-100 font-semibold">
                                         No location selected
                                     </div>
-                                    <div id="selected-coords" class="text-sm text-gray-600 mt-1">
+                                    <div id="selected-coords" class="text-sm text-slate-400 mt-1">
                                         Coordinates: --
                                     </div>
                                 </div>
 
-                                <div class="bg-white p-4 rounded-lg shadow">
-                                    <label for="radius" class="block text-sm font-medium text-gray-700 mb-2">
+                                <div class="bg-slate-950/50 border border-slate-700 p-4 rounded-lg">
+                                    <label for="radius" class="block text-sm font-semibold text-slate-300 mb-3 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                                        </svg>
                                         Search Radius (km)
                                     </label>
                                     <input type="range" id="radius" name="radius" min="50" max="1000" value="500" 
-                                           class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
-                                    <div class="text-center mt-2">
-                                        <span id="radius-value" class="text-lg font-bold text-blue-600">500 km</span>
+                                           class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                                    <div class="text-center mt-3">
+                                        <span id="radius-value" class="text-lg font-bold text-cyan-400">500 km</span>
                                     </div>
                                 </div>
 
                                 <button id="analyze-btn" 
-                                        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        class="w-full bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-4 rounded-lg font-semibold transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                         disabled>
-                                    🔍 Analyze Disasters in This Area
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    Analyze Disasters in This Area
                                 </button>
 
                                 <button id="current-location-btn" 
-                                        class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow">
-                                    📍 Use Current Location
+                                        class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow flex items-center justify-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    </svg>
+                                    Use Current Location
                                 </button>
                             </div>
                         </div>
@@ -63,16 +95,22 @@
 
                     <!-- Loading State -->
                     <div id="loading" class="hidden text-center py-12">
-                        <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent"></div>
-                        <p class="mt-4 text-gray-600 font-medium">Analyzing disaster data...</p>
+                        <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-cyan-500 border-t-transparent"></div>
+                        <p class="mt-4 text-slate-300 font-medium">Analyzing disaster data...</p>
                     </div>
 
                     <!-- Results Container -->
                     <div id="results" class="hidden">
                         <!-- Location Summary -->
-                        <div id="location-summary" class="mb-6 bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">📊 Analysis Summary</h3>
-                            <div id="summary-content" class="text-gray-700"></div>
+                        <div id="location-summary" class="mb-6 bg-slate-900/50 border border-slate-700 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-slate-100 mb-3 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                                Analysis Summary
+                            </h3>
+                            <div id="summary-content" class="text-slate-300"></div>
                         </div>
 
                         <!-- Risk Assessment -->
@@ -91,16 +129,20 @@
                         </div>
 
                         <!-- Raw Data (Collapsible) -->
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <button id="toggle-raw-data" class="text-sm font-medium text-blue-600 hover:text-blue-800">
-                                🔽 Show Raw API Data
+                        <div class="bg-slate-900/50 border border-slate-700 p-4 rounded-lg">
+                            <button id="toggle-raw-data" class="text-sm font-medium text-cyan-400 hover:text-cyan-300 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                                Show Raw API Data
                             </button>
-                            <div id="raw-data" class="hidden mt-4 bg-white p-4 rounded border text-xs font-mono overflow-x-auto"></div>
+                            <div id="raw-data" class="hidden mt-4 bg-slate-950/50 border border-slate-700 p-4 rounded text-xs font-mono overflow-x-auto text-slate-300"></div>
                         </div>
                     </div>
 
                     <!-- Error Display -->
-                    <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                    <div id="error" class="hidden bg-red-500/20 border border-red-500/30 p-4 rounded-lg">
                         <div class="flex">
                             <div class="flex-shrink-0">
                                 <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -108,7 +150,7 @@
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p id="error-message" class="text-sm text-red-700"></p>
+                                <p id="error-message" class="text-sm text-red-300"></p>
                             </div>
                         </div>
                     </div>
@@ -177,10 +219,22 @@
                 const btn = document.getElementById('toggle-raw-data');
                 if (rawData.classList.contains('hidden')) {
                     rawData.classList.remove('hidden');
-                    btn.textContent = '🔼 Hide Raw API Data';
+                    btn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 15l7-7 7 7" />
+                        </svg>
+                        Hide Raw API Data
+                    `;
                 } else {
                     rawData.classList.add('hidden');
-                    btn.textContent = '🔽 Show Raw API Data';
+                    btn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                        Show Raw API Data
+                    `;
                 }
             });
         });
@@ -297,29 +351,35 @@
             if (analysis.risk_assessment) {
                 const risk = analysis.risk_assessment;
                 const riskColors = {
-                    'low': 'bg-green-100 border-green-500 text-green-800',
-                    'medium': 'bg-yellow-100 border-yellow-500 text-yellow-800',
-                    'high': 'bg-red-100 border-red-500 text-red-800'
+                    'low': 'bg-cyan-500/20 border-cyan-500/30 text-cyan-300',
+                    'medium': 'bg-yellow-500/20 border-yellow-500/30 text-yellow-300',
+                    'high': 'bg-red-500/20 border-red-500/30 text-red-300'
                 };
                 const riskColor = riskColors[risk.overall_risk] || riskColors['medium'];
 
                 document.getElementById('risk-assessment').innerHTML = `
-                    <div class="${riskColor} p-6 rounded-lg border-l-4">
-                        <h3 class="text-xl font-bold mb-3">⚠️ Risk Assessment</h3>
-                        <div class="mb-3">
-                            <span class="font-semibold">Overall Risk: </span>
+                    <div class="${riskColor} p-6 rounded-xl border-l-4">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Risk Assessment
+                        </h3>
+                        <div class="mb-4 bg-slate-950/50 p-4 rounded-lg border border-slate-700">
+                            <span class="font-semibold text-slate-300">Overall Risk: </span>
                             <span class="text-2xl font-bold uppercase">${risk.overall_risk}</span>
                         </div>
-                        <div class="mb-3">
-                            <strong>Primary Threats:</strong>
-                            <ul class="list-disc list-inside mt-2">
-                                ${(risk.primary_threats || []).map(t => `<li>${t}</li>`).join('')}
+                        <div class="mb-4">
+                            <strong class="text-slate-200">Primary Threats:</strong>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                ${(risk.primary_threats || []).map(t => `<li class="text-slate-300">${t}</li>`).join('')}
                             </ul>
                         </div>
                         <div>
-                            <strong>Recommendations:</strong>
-                            <ul class="list-disc list-inside mt-2">
-                                ${(risk.recommendations || []).map(r => `<li>${r}</li>`).join('')}
+                            <strong class="text-slate-200">Recommendations:</strong>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                ${(risk.recommendations || []).map(r => `<li class="text-slate-300">${r}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
@@ -330,30 +390,36 @@
             if (analysis.earthquake_analysis) {
                 const eq = analysis.earthquake_analysis;
                 document.getElementById('earthquake-section').innerHTML = `
-                    <div class="bg-orange-50 p-6 rounded-lg border border-orange-200">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">🌋 Earthquake Analysis</h3>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-2xl font-bold text-orange-600">${eq.total_count || 0}</div>
-                                <div class="text-sm text-gray-600">Total Events</div>
+                    <div class="bg-slate-900/50 border border-slate-700 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Earthquake Analysis
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-orange-400">${eq.total_count || 0}</div>
+                                <div class="text-sm text-slate-400">Total Events</div>
                             </div>
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-2xl font-bold text-red-600">${eq.strongest_magnitude || 'N/A'}</div>
-                                <div class="text-sm text-gray-600">Strongest</div>
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-red-400">${eq.strongest_magnitude || 'N/A'}</div>
+                                <div class="text-sm text-slate-400">Strongest</div>
                             </div>
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-lg font-semibold text-blue-600">${eq.trend || 'N/A'}</div>
-                                <div class="text-sm text-gray-600">Trend</div>
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-lg font-semibold text-cyan-400">${eq.trend || 'N/A'}</div>
+                                <div class="text-sm text-slate-400">Trend</div>
                             </div>
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-lg font-semibold text-purple-600">${(eq.risk_areas || []).length}</div>
-                                <div class="text-sm text-gray-600">Risk Areas</div>
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-lg font-semibold text-purple-400">${(eq.risk_areas || []).length}</div>
+                                <div class="text-sm text-slate-400">Risk Areas</div>
                             </div>
                         </div>
                         ${eq.risk_areas && eq.risk_areas.length > 0 ? `
-                            <div class="mt-3">
-                                <strong>High-Risk Areas:</strong>
-                                <ul class="list-disc list-inside mt-2 text-gray-700">
+                            <div class="mt-4 bg-slate-950/50 border border-slate-700 p-4 rounded-lg">
+                                <strong class="text-slate-200">High-Risk Areas:</strong>
+                                <ul class="list-disc list-inside mt-2 text-slate-300 space-y-1">
                                     ${eq.risk_areas.map(area => `<li>${area}</li>`).join('')}
                                 </ul>
                             </div>
@@ -366,32 +432,38 @@
             if (analysis.weather_analysis) {
                 const weather = analysis.weather_analysis;
                 document.getElementById('weather-section').innerHTML = `
-                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">🌪️ Active Weather Events</h3>
-                        <div class="grid grid-cols-2 gap-4 mb-3">
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-2xl font-bold text-blue-600">${weather.active_events || 0}</div>
-                                <div class="text-sm text-gray-600">Active Events</div>
+                    <div class="bg-slate-900/50 border border-slate-700 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                            </svg>
+                            Active Weather Events
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-cyan-400">${weather.active_events || 0}</div>
+                                <div class="text-sm text-slate-400">Active Events</div>
                             </div>
-                            <div class="bg-white p-3 rounded shadow text-center">
-                                <div class="text-lg font-semibold text-indigo-600">${(weather.event_types || []).length}</div>
-                                <div class="text-sm text-gray-600">Event Types</div>
+                            <div class="bg-slate-950/50 border border-slate-700 p-3 rounded-lg text-center">
+                                <div class="text-lg font-semibold text-cyan-400">${(weather.event_types || []).length}</div>
+                                <div class="text-sm text-slate-400">Event Types</div>
                             </div>
                         </div>
                         ${weather.event_types && weather.event_types.length > 0 ? `
-                            <div class="mb-3">
-                                <strong>Event Types:</strong>
+                            <div class="mb-4">
+                                <strong class="text-slate-200">Event Types:</strong>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     ${weather.event_types.map(type => 
-                                        `<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">${type}</span>`
+                                        `<span class="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-3 py-1 rounded-full text-sm">${type}</span>`
                                     ).join('')}
                                 </div>
                             </div>
                         ` : ''}
                         ${weather.affected_areas && weather.affected_areas.length > 0 ? `
-                            <div>
-                                <strong>Affected Areas:</strong>
-                                <ul class="list-disc list-inside mt-2 text-gray-700">
+                            <div class="bg-slate-950/50 border border-slate-700 p-4 rounded-lg">
+                                <strong class="text-slate-200">Affected Areas:</strong>
+                                <ul class="list-disc list-inside mt-2 text-slate-300 space-y-1">
                                     ${weather.affected_areas.map(area => `<li>${area}</li>`).join('')}
                                 </ul>
                             </div>
@@ -402,17 +474,29 @@
 
             // Historical Context
             document.getElementById('historical-section').innerHTML = `
-                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                    <h4 class="font-bold text-gray-900 mb-2">📜 Historical Context</h4>
-                    <p class="text-gray-700 text-sm">${analysis.historical_context || 'No historical data available'}</p>
+                <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-xl">
+                    <h4 class="font-bold text-slate-100 mb-3 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Historical Context
+                    </h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">${analysis.historical_context || 'No historical data available'}</p>
                 </div>
             `;
 
             // Forecast
             document.getElementById('forecast-section').innerHTML = `
-                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
-                    <h4 class="font-bold text-gray-900 mb-2">🔮 Forecast & Warnings</h4>
-                    <p class="text-gray-700 text-sm">${analysis.forecast || 'No forecast available'}</p>
+                <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-xl">
+                    <h4 class="font-bold text-slate-100 mb-3 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Forecast & Warnings
+                    </h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">${analysis.forecast || 'No forecast available'}</p>
                 </div>
             `;
 

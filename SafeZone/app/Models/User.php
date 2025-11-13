@@ -67,5 +67,10 @@ class User extends Authenticatable
         return $this->morphMany(Address::class, 'addressable');
     }
 
+    public function rescues()
+    {
+        return $this->hasMany(Rescue::class);
+    }
+
     
 }

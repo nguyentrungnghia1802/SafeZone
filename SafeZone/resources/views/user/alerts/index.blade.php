@@ -39,15 +39,15 @@
 
         <!-- Content -->
         <div class="space-y-6">
-            <!-- 🔹 Nút lọc cấp cao -->
+            <!-- Mode Filter Buttons -->
 <div class="flex justify-center mb-8 gap-4">
     <!-- All Alerts -->
     <a href="{{ route('alerts.index', ['mode' => 'all']) }}"
-       class="px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-sm transition duration-300
+       class="px-6 py-3 rounded-lg font-semibold flex items-center gap-2 shadow-sm transition duration-300
               {{ $mode === 'all' 
-                    ? 'bg-blue-600 text-white shadow-lg scale-105' 
-                    : 'bg-gray-800 border border-gray-700 text-gray-200 hover:bg-gray-700 hover:text-blue-400' }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ $mode === 'all' ? 'text-white' : 'text-blue-400' }}" 
+                    ? 'bg-slate-700 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-500/20' 
+                    : 'bg-slate-800/50 border border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:border-cyan-400/50' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" 
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M3 5h18M3 12h18M3 19h18" />
@@ -57,11 +57,11 @@
 
     <!-- Near You -->
     <a href="{{ route('alerts.index', ['mode' => 'near']) }}"
-       class="px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-sm transition duration-300
+       class="px-6 py-3 rounded-lg font-semibold flex items-center gap-2 shadow-sm transition duration-300
               {{ $mode === 'near' 
-                    ? 'bg-green-600 text-white shadow-lg scale-105' 
-                    : 'bg-gray-800 border border-gray-700 text-gray-200 hover:bg-gray-700 hover:text-green-400' }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ $mode === 'near' ? 'text-white' : 'text-green-400' }}" 
+                    ? 'bg-slate-700 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-500/20' 
+                    : 'bg-slate-800/50 border border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:border-cyan-400/50' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" 
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 11a3 3 0 100-6 3 3 0 000 6z" />
@@ -73,11 +73,11 @@
 
     <!-- In You -->
     <a href="{{ route('alerts.index', ['mode' => 'in']) }}"
-       class="px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-sm transition duration-300
+       class="px-6 py-3 rounded-lg font-semibold flex items-center gap-2 shadow-sm transition duration-300
               {{ $mode === 'in' 
-                    ? 'bg-red-600 text-white shadow-lg scale-105' 
-                    : 'bg-gray-800 border border-gray-700 text-gray-200 hover:bg-gray-700 hover:text-red-400' }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ $mode === 'in' ? 'text-white' : 'text-red-400' }}" 
+                    ? 'bg-slate-700 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-500/20' 
+                    : 'bg-slate-800/50 border border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:border-cyan-400/50' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" 
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 11a3 3 0 100-6 3 3 0 000 6z" />
@@ -95,7 +95,7 @@
 
 
        <form method="GET"
-      class="mb-8 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-6 rounded-2xl shadow-lg space-y-4">
+      class="mb-8 bg-slate-800/40 border border-slate-600/30 p-6 rounded-xl shadow-lg space-y-4">
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <input type="hidden" name="mode" value="{{ $mode }}">
@@ -103,9 +103,8 @@
 
         <!-- Search -->
         <div>
-            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                <!-- Search Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24"
+            <label class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M21 21l-4.35-4.35M16.65 10.5a6.15 6.15 0 11-12.3 0 6.15 6.15 0 0112.3 0z"/>
@@ -114,16 +113,15 @@
             </label>
          <input type="text" name="q" value="{{ request('q') }}"
              placeholder="Enter keywords..."
-                   class="mt-1 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 
-                          text-gray-900 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 
-                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-150">
+                   class="mt-1 w-full rounded-lg border border-slate-600 bg-slate-900/50 
+                          text-slate-200 placeholder-slate-500 
+                          focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-150">
         </div>
 
         <!-- Severity -->
         <div>
-            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                <!-- Alert Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500" fill="none" viewBox="0 0 24 24"
+            <label class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M12 9v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3l-7.07-12a2 2 0 00-3.48 0l-7.07 12A2 2 0 004.93 19z"/>
@@ -131,8 +129,8 @@
                 Severity
             </label>
             <select name="severity"
-                    class="mt-1 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 
-                           text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-150">
+                    class="mt-1 w-full rounded-lg border border-slate-600 bg-slate-900/50 
+                           text-slate-200 focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-150">
                 <option value="">All</option>
                 <option value="low" {{ request('severity')=='low' ? 'selected' : '' }}>Low</option>
                 <option value="medium" {{ request('severity')=='medium' ? 'selected' : '' }}>Medium</option>
@@ -143,9 +141,8 @@
 
         <!-- Type -->
         <div>
-            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                <!-- Cloud/Storm Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24"
+            <label class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M3 15a4 4 0 010-8 5 5 0 019.58-1.19A4.5 4.5 0 0119.5 12H20a4 4 0 010 8h-7"/>
@@ -153,20 +150,21 @@
                 Alert type
             </label>
             <select name="type"
-                    class="mt-1 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 
-                           text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all duration-150">
+                    class="mt-1 w-full rounded-lg border border-slate-600 bg-slate-900/50 
+                           text-slate-200 focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-150">
                 <option value="">All</option>
                 <option value="storm" {{ request('type')=='storm' ? 'selected' : '' }}>Storm</option>
                 <option value="flood" {{ request('type')=='flood' ? 'selected' : '' }}>Flood</option>
                 <option value="fire" {{ request('type')=='fire' ? 'selected' : '' }}>Wildfire</option>
+                <option value="earthquake" {{ request('type')=='earthquake' ? 'selected' : '' }}>Earthquake</option>
+                <option value="other" {{ request('type')=='other' ? 'selected' : '' }}>Other</option>
             </select>
         </div>
 
         <!-- Date -->
         <div>
-            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                <!-- Calendar Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24"
+            <label class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -174,17 +172,16 @@
                 From date
             </label>
             <input type="date" name="from_date" value="{{ request('from_date') }}"
-                   class="mt-1 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 
-                          text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-150">
+                   class="mt-1 w-full rounded-lg border border-slate-600 bg-slate-900/50 
+                          text-slate-200 focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-150">
         </div>
     </div>
 
     <!-- Buttons -->
-    <div class="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+    <div class="flex justify-end gap-3 pt-4 border-t border-slate-600/30">
         <button type="submit"
-                class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-xl shadow-md 
-                       hover:shadow-lg hover:from-blue-700 transition-all duration-150 flex items-center gap-2">
-            <!-- Filter Icon -->
+                class="px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-lg shadow-md 
+                       hover:shadow-lg transition-all duration-150 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -194,9 +191,8 @@
         </button>
 
         <a href="{{ route('alerts.index') }}"
-           class="px-5 py-2.5 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-medium rounded-xl shadow-sm 
-                  hover:bg-gray-400 dark:hover:bg-gray-600 transition-all duration-150 flex items-center gap-2">
-            <!-- X Icon -->
+           class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium rounded-lg shadow-sm 
+                  transition-all duration-150 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -212,8 +208,8 @@
 
 
             <!-- ALERT LIST -->
-            <div class="bg-white dark:bg-gray-800 shadow sm:rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
+            <div class="bg-slate-800/40 border border-slate-600/30 shadow sm:rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-slate-200 mb-4">
                     Alert List
                 </h3>
 
@@ -221,17 +217,17 @@
 
                 @foreach ($alertsPaginated as $alert)
                     <div class="rounded-xl shadow-lg p-4 flex flex-col hover:shadow-xl hover:scale-[1.02]
-                        transition-all duration-300 border-l-4
+                        transition-all duration-300 border-l-4 bg-slate-800/40
                         {{ match($alert->severity) {
-                            'low' => 'border-green-400 bg-green-900/20',
-                            'medium' => 'border-yellow-400 bg-yellow-900/20',
-                            'high' => 'border-orange-400 bg-orange-900/20',
-                            'critical' => 'border-red-500 bg-red-900/30',
-                            default => 'border-gray-400 bg-gray-700/30'
+                            'low' => 'border-cyan-400 hover:border-cyan-300',
+                            'medium' => 'border-yellow-400/60 hover:border-yellow-400',
+                            'high' => 'border-orange-400/60 hover:border-orange-400',
+                            'critical' => 'border-red-500/80 hover:border-red-400',
+                            default => 'border-slate-500 hover:border-slate-400'
                         } }}"
                     >
-                        <!-- ẢNH -->
-                        <div class="w-full h-40 rounded-lg overflow-hidden mb-4 bg-gray-700 border border-gray-600">
+                        <!-- IMAGE -->
+                        <div class="w-full h-40 rounded-lg overflow-hidden mb-4 bg-slate-900/50 border border-slate-700">
                             @if ($alert->image_path != 'base.png')
                                 <img src="{{ asset('storage/' . $alert->image_path) }}"
                                      class="object-contain w-full h-full" />
@@ -241,32 +237,32 @@
                             @endif
                         </div>
 
-                        <!-- NỘI DUNG -->
+                        <!-- CONTENT -->
                         <div class="flex-1 flex flex-col">
 
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-semibold text-white leading-tight">
+                                <h3 class="text-lg font-semibold text-slate-100 leading-tight">
                                     {{ $alert->title }}
                                 </h3>
 
                                 <span class="px-2 py-1 text-xs rounded-md font-bold uppercase
                                     {{ match($alert->severity) {
-                                        'low' => 'bg-green-700 text-green-100',
-                                        'medium' => 'bg-yellow-700 text-yellow-100',
-                                        'high' => 'bg-orange-700 text-orange-100',
-                                        'critical' => 'bg-red-700 text-red-100',
-                                        default => 'bg-gray-700 text-gray-200'
+                                        'low' => 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30',
+                                        'medium' => 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30',
+                                        'high' => 'bg-orange-500/20 text-orange-300 border border-orange-500/30',
+                                        'critical' => 'bg-red-500/20 text-red-300 border border-red-500/30',
+                                        default => 'bg-slate-700 text-slate-300'
                                     } }}"
                                 >
                                     {{ $alert->severity }}
                                 </span>
                             </div>
 
-                            <p class="text-gray-300 text-sm mb-1">
+                            <p class="text-slate-400 text-sm mb-1">
                                 {{ ucfirst($alert->type) }} • {{ $alert->created_at->format('d/m/Y H:i') }}
                             </p>
 
-                            <p class="text-gray-200 text-sm line-clamp-3 leading-relaxed">
+                            <p class="text-slate-300 text-sm line-clamp-3 leading-relaxed">
                                 {{ $alert->description }}
                             </p>
 
@@ -274,7 +270,7 @@
 
                         <div class="mt-4 flex justify-between items-center">
                             <a href="{{ route('alerts.show', $alert->id) }}"
-                               class="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
+                               class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -293,13 +289,13 @@
                     {{ $alertsPaginated->links() }}
                 </div>
 
-                <!-- TEMPLATE ALERT MỚI -->
+                <!-- NEW ALERT TEMPLATE -->
                 <template id="alert-template">
                     <div class="rounded-xl shadow-lg p-4 flex flex-col hover:shadow-xl transition-all duration-300
-                                border-l-4 animate-pulse bg-gray-700/30">
+                                border-l-4 animate-pulse bg-slate-800/40">
 
                         <!-- IMAGE -->
-                        <div class="w-full h-40 rounded-lg overflow-hidden mb-4 bg-gray-700 border border-gray-600">
+                        <div class="w-full h-40 rounded-lg overflow-hidden mb-4 bg-slate-900/50 border border-slate-700">
                             <img src="/images/base.png"
                                  alt="default"
                                  class="object-contain w-full h-full opacity-70">
@@ -309,15 +305,15 @@
                         <div class="flex-1 flex flex-col">
 
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-semibold text-white leading-tight alert-title"></h3>
+                                <h3 class="text-lg font-semibold text-slate-100 leading-tight alert-title"></h3>
 
                                 <span class="px-2 py-1 text-xs rounded-md font-bold uppercase alert-severity">
                                 </span>
                             </div>
 
-                            <p class="text-gray-300 text-sm alert-meta"></p>
+                            <p class="text-slate-400 text-sm alert-meta"></p>
 
-                            <p class="text-gray-200 text-sm line-clamp-3 leading-relaxed mt-2 alert-description"></p>
+                            <p class="text-slate-300 text-sm line-clamp-3 leading-relaxed mt-2 alert-description"></p>
                         </div>
 
                     </div>
@@ -361,12 +357,12 @@
 
                 // CARD COLOR
                 const severityStyles = {
-                    low: "border-green-400 bg-green-900/20",
-                    medium: "border-yellow-400 bg-yellow-900/20",
-                    high: "border-orange-400 bg-orange-900/20",
-                    critical: "border-red-500 bg-red-900/30",
+                    low: "border-cyan-400",
+                    medium: "border-yellow-400/60",
+                    high: "border-orange-400/60",
+                    critical: "border-red-500/80",
                 };
-                card.classList.add(...(severityStyles[alert.severity] || "border-gray-400 bg-gray-700/30").split(" "));
+                card.classList.add(...(severityStyles[alert.severity] || "border-slate-500").split(" "));
 
                 // TITLE
                 card.querySelector(".alert-title").textContent = alert.title;
@@ -376,13 +372,13 @@
                 severityBadge.textContent = alert.severity;
 
                 const badgeStyles = {
-                    low: "bg-green-700 text-green-100",
-                    medium: "bg-yellow-700 text-yellow-100",
-                    high: "bg-orange-700 text-orange-100",
-                    critical: "bg-red-700 text-red-100",
+                    low: "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30",
+                    medium: "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30",
+                    high: "bg-orange-500/20 text-orange-300 border border-orange-500/30",
+                    critical: "bg-red-500/20 text-red-300 border border-red-500/30",
                 };
                 severityBadge.classList.add(
-                    ...(badgeStyles[alert.severity] || "bg-gray-700 text-gray-200").split(" ")
+                    ...(badgeStyles[alert.severity] || "bg-slate-700 text-slate-300").split(" ")
                 );
 
                 // META
