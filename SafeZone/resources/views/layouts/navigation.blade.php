@@ -76,7 +76,7 @@
                     <div x-show="notificationOpen" @click.away="notificationOpen = false" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 mt-2 w-96 rounded-xl shadow-2xl bg-slate-800 border border-slate-700/50 ring-1 ring-black ring-opacity-5 overflow-hidden z-[9999]" style="display: none;">
                         <div class="py-2 max-h-96 overflow-y-auto">
                             <div class="px-4 py-3 border-b border-slate-700/50">
-                                <h3 class="text-base font-semibold text-white">Thông báo</h3>
+                                <h3 class="text-base font-semibold text-white">Notifications</h3>
                             </div>
                             
                             <div class="notification-dropdown-content">
@@ -85,7 +85,7 @@
                                     $data = $notification->data;
                                     $alertId = $data['alert_id'] ?? null;
                                     $severity = $data['severity'] ?? 'low';
-                                    $title = $data['title'] ?? 'Thông báo mới';
+                                    $title = $data['title'] ?? 'New notification';
                                     $type = $data['type'] ?? 'alert';
                                 @endphp
                                 <div class="px-4 py-3 hover:bg-slate-700/50 transition-colors duration-150 border-b border-slate-700/30 {{ $notification->read_at ? 'opacity-60' : '' }}">
@@ -124,7 +124,7 @@
                                                     <a href="{{ route('alerts.show', $alertId) }}" 
                                                        class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline"
                                                        onclick="markNotificationAsRead(event, '{{ $notification->id }}')">
-                                                        Xem chi tiết →
+                                                        View details →
                                                     </a>
                                                 @endif
                                             </div>
@@ -136,7 +136,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                                     </svg>
-                                    <p class="text-sm text-slate-400 mt-2">Không có thông báo mới</p>
+                                    <p class="text-sm text-slate-400 mt-2">No new notifications</p>
                                 </div>
                             @endforelse
                             </div>
@@ -144,7 +144,7 @@
                             @if($userNotifications->count() > 0)
                                 <div class="px-4 py-3 border-t border-slate-700/50">
                                     <a href="{{ route('alerts.index') }}" class="block text-center text-sm text-cyan-400 hover:text-cyan-300 font-medium">
-                                        Xem tất cả thông báo
+                                        View all notifications
                                     </a>
                                 </div>
                             @endif
@@ -494,7 +494,7 @@
                 const data = notification.data;
                 const alertId = data.alert_id || null;
                 const severity = data.severity || 'low';
-                const title = data.title || 'Thông báo mới';
+                const title = data.title || 'New notification';
                 const type = data.type || 'alert';
                 
                 const severityColors = {
@@ -526,8 +526,8 @@
                                     <span class="uppercase">${severity}</span>
                                 </p>
                                 <div class="flex items-center justify-between mt-2">
-                                    <span class="text-xs text-slate-500">Vừa xong</span>
-                                    ${alertId ? `<a href="/alerts/${alertId}" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline">Xem chi tiết →</a>` : ''}
+                                    <span class="text-xs text-slate-500">Just now</span>
+                                    ${alertId ? `<a href="/alerts/${alertId}" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline">View details →</a>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -591,7 +591,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                             </svg>
-                            <p class="text-sm text-slate-400 mt-2">Không có thông báo mới</p>
+                            <p class="text-sm text-slate-400 mt-2">No new notifications</p>
                         </div>
                     `;
                     return;
@@ -602,7 +602,7 @@
                     const data = notification.data;
                     const alertId = data.alert_id || null;
                     const severity = data.severity || 'low';
-                    const title = data.title || 'Thông báo mới';
+                    const title = data.title || 'New notification';
                     const type = data.type || 'alert';
                     const colors = severityColors[severity] || severityColors['low'];
                     const isUnread = !notification.read_at;
@@ -629,7 +629,7 @@
                                     </p>
                                     <div class="flex items-center justify-between mt-2">
                                         <span class="text-xs text-slate-500">${createdAt}</span>
-                                        ${alertId ? `<a href="/alerts/${alertId}" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline">Xem chi tiết →</a>` : ''}
+                                        ${alertId ? `<a href="/alerts/${alertId}" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline">View details →</a>` : ''}
                                     </div>
                                 </div>
                             </div>
@@ -645,12 +645,12 @@
                 const now = new Date();
                 const seconds = Math.floor((now - date) / 1000);
                 
-                if (seconds < 60) return 'Vừa xong';
-                if (seconds < 3600) return Math.floor(seconds / 60) + ' phút trước';
-                if (seconds < 86400) return Math.floor(seconds / 3600) + ' giờ trước';
-                if (seconds < 604800) return Math.floor(seconds / 86400) + ' ngày trước';
-                if (seconds < 2592000) return Math.floor(seconds / 604800) + ' tuần trước';
-                return Math.floor(seconds / 2592000) + ' tháng trước';
+                if (seconds < 60) return 'Just now';
+                if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
+                if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
+                if (seconds < 604800) return Math.floor(seconds / 86400) + ' days ago';
+                if (seconds < 2592000) return Math.floor(seconds / 604800) + ' weeks ago';
+                return Math.floor(seconds / 2592000) + ' months ago';
             }
 
             function showToastNotification(alert) {
@@ -722,7 +722,7 @@
         }
     });
     
-    // Mark notification as read when clicking "Xem chi tiết"
+    // Mark notification as read when clicking "View details"
     window.markNotificationAsRead = function(event, notificationId) {
         event.preventDefault();
         const link = event.target.closest('a');
