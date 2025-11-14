@@ -64,7 +64,7 @@
                         </svg>
                         <!-- Notification Badge -->
                         @php
-                            $userNotifications = Auth::user()->notifications()->take(5)->get();
+                            $userNotifications = Auth::user()->unreadNotifications()->take(5)->get();
                             $unreadCount = Auth::user()->unreadNotifications()->count();
                         @endphp
                         @if($unreadCount > 0)
@@ -121,7 +121,9 @@
                                             <div class="flex items-center justify-between mt-2">
                                                 <span class="text-xs text-slate-500">{{ $notification->created_at->diffForHumans() }}</span>
                                                 @if($alertId)
-                                                    <a href="{{ route('alerts.show', $alertId) }}" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline">
+                                                    <a href="{{ route('alerts.show', $alertId) }}" 
+                                                       class="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline"
+                                                       onclick="markNotificationAsRead(event, '{{ $notification->id }}')">
                                                         Xem chi tiết →
                                                     </a>
                                                 @endif
@@ -719,5 +721,21 @@
             }
         }
     });
+    
+    // Mark notification as read when clicking "Xem chi tiết"
+    window.markNotificationAsRead = function(event, notificationId) {
+        event.preventDefault();
+        const link = event.target.closest('a');
+        
+        fetch(`/api/notifications/${notificationId}/mark-read`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            }
+        })
+        .then(() => window.location.href = link.href)
+        .catch(() => window.location.href = link.href);
+    };
 </script>
 @endauth
